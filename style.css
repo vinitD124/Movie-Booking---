@@ -1,0 +1,608 @@
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  height: 100vh;
+  width: 100%;
+ background-image: url("./img/Select Seat.png");
+ background-size: cover;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+/* overflow: hidden; */
+flex-direction: column;
+position: relative;
+}
+
+.top{
+    background-position: top;
+    margin-top: 10px;
+}
+
+.main-container h3{
+    color: rgb(243, 250, 240);
+    font-weight: 400;
+    text-align: left;
+    border-left: 2px solid white;
+    padding-left: 15px;
+    font-size: 1.3rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.poster-container{
+    display: grid;
+    /* grid-template-columns: repeat(4 , minmax(250px , 1fr)); */
+    grid-template-columns: repeat(4, 260px);
+    grid-gap: 40px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    width: 100%;
+    height: 100%;
+}
+
+.poster-card {
+    background-image: url("./img/oppenheimer.jpg");
+    height: 400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-origin: bottom;
+}
+
+ .poster-card:hover::after { 
+    content: "";
+ border: 1px solid rgb(0, 56, 8);
+ transition: all 0.8s ease-in-out;
+ border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(2, 19, 0, 0.653);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.poster-btn{
+    background-color: white;
+    z-index: 10;
+    display: none;
+    cursor: pointer;
+    /* position: absolute; */
+    /* bottom: 20px; */
+}
+
+.poster-card:hover .poster-btn{
+    display: flex;
+    padding: 12px 16px;
+    background: none;
+    border: none;
+    color: rgb(255, 255, 255);
+    
+}
+
+
+.poster-details-container{
+    display: flex;
+    width: 80%;
+    height: 100%;
+    /* background-color: red; */
+    /* padding: 180px 180px 150px 180px; */
+    color: white;
+    align-items: center;
+    gap: 80px;
+    margin-top: 40px;
+    
+}
+
+
+.left img{
+    width: 430px;
+    max-width: 100%;
+    border-radius: 30px;
+}
+
+ul{
+    list-style: none;
+    width: 300px;
+    
+}
+
+ul li{
+    display: flex;
+    justify-content: space-between;
+    margin: 06px 0;
+}
+
+
+.top-right{
+
+    border-bottom: 1px solid #83a4921c;
+    padding-bottom: 20px;
+}
+
+
+.heading{
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 20px;
+        width: 60%;
+}
+
+li p{
+    color: rgb(182, 182, 182);
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+li span{
+    letter-spacing: 1px;
+    color: rgb(213, 213, 213);
+    font-weight: 300;
+}
+
+.li p i{
+margin-block-start: 0cqmin;
+}
+
+.bottom-right{
+    /* background-color: red; */
+    margin-top: 20px;
+}
+
+.row h3{
+    font-size: 2rem;
+}
+
+.row{
+    width: 500px;
+    display: flex;
+    margin-bottom: 10px;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.row-one h3{
+    font-size: 1.3rem;
+    margin-top: 20px;
+    margin-bottom: 14px;
+    font-weight: 500;
+}
+
+.location-btn{
+    /* flex: 1; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    color: white;
+    background: none;
+    font-size: 0.9rem;
+    padding: 10px 18px;
+    border-radius: 50px;
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+    /* transition: all .1s ease-out; */
+}
+
+
+.location-btn i{
+    font-size: 1.3rem;
+}
+
+.location-btn.active{
+    background-color: #1DE782;
+    border-color: #1DE782;
+}
+
+
+.time-btn{
+  
+    border: 1px solid white;
+    color: white;
+    background: none;
+    font-size: 0.9rem;
+    padding: 10px 18px;
+    border-radius: 5px;
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.date-btn{
+    border: 1px solid white;
+    color: white;
+    background: none;
+    font-size: 0.9rem;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 1px;
+    border-radius: 5px;
+    display: flex;
+    gap: 5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.select-ticket-btn{
+    background-color: #1DE782;
+    font-size: 1rem;
+    padding: 10px 1px;
+    border-radius: 5px;
+    display: flex;
+    gap: 5px;
+    margin-top: 40px;
+    border: none;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+
+.select-ticket-btn:hover{
+    background-color: #00cf68;
+    color: white;
+}
+
+.date-btn.active{
+    border-color: #1DE782;
+    background-color: #1DE782;
+}
+
+.time-btn.active{
+    border-color: #1DE782;
+    background-color: #1DE782;
+}
+
+/* ---------- */
+
+
+.main-ticket-wrapper{
+    color: white;
+    
+}
+
+.ticket-child {
+    display: flex;
+    gap: 20px;
+}
+
+.main-ticket-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+}
+
+.ticket-top{
+    padding: 20px;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.178);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.ticket-child h2{
+    display: flex;
+    gap: 10px;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.ticket-child span{
+    color: rgb(193, 193, 193);
+    font-weight: 300;
+}
+
+.ticket-price{
+    position: absolute;
+    bottom: -33px;
+    background-color: #00cf68;
+    color: rgb(0, 44, 16);
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 4px 16px;
+}
+
+.main-ticket{
+    margin-top: 75px;
+    display: flex;
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.seat-container{
+   width: 100%;
+   margin-top: 20px;
+   display: flex;
+   flex-direction: column;
+   gap: 13px;
+
+}
+
+.screen{
+    width: 100%;
+    height: 35px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+}
+
+.seat-container  button{
+  
+   
+    min-width: 47px;
+    padding: 10px;
+    border-radius: 6px;
+    background: none;
+    background-color: rgba(255, 255, 255, 0.094);
+    cursor: pointer;
+    color: white;
+    border: 1px solid white;
+    font-weight: 600;
+}
+
+
+.seat-container  button.active{
+    background-color: #1DE782;
+    color: white;
+    border: none;
+}
+
+
+.seats-row{
+    display: flex;
+    gap: 10px
+}
+
+
+.bottom-container{
+    width: 100%;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-top: 1px solid white;
+    margin-top: 50px;
+    transition: all 0.1s ease-in-out;
+    position: absolute;
+    bottom: 20px;
+    left: -2000px;
+    
+
+  }
+
+
+  .bottom-container.active{
+    left: 0px
+  }
+
+.ticket-bottom-container{
+    display: flex;
+    width: 55%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    /* background   -color: red; */
+    
+
+}
+
+.text{
+font-size: 1.7rem;
+
+}
+
+.text span{
+    font-size: 1rem;
+}
+
+.text h3{
+    font-weight: 600;
+}
+
+.ticket-bottom-left {
+    display: flex;
+    gap: 60px;
+}
+
+.ticket-bottom-right{
+    display: flex;
+    gap: 20px;
+}
+
+.ticket-bottom-right button{
+    background-color: #1DE782;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    color: black;
+}
+
+.ticket-bottom-right button:first-child{
+    background: none;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 50px;
+}
+
+.text-2{
+
+    max-width: 300px;
+    overflow-x: scroll;
+}
+
+.text-2::-webkit-scrollbar{
+    display: none;
+}
+
+.get-ticket{
+    cursor: pointer;
+}
+
+
+.back-btn{
+    cursor: pointer;
+}
+
+.bill-container{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: -50px;
+}
+
+.bill{
+    height: 80%;
+    background-color: reds;
+    width: 500px;
+    max-width: 80%;
+
+    /* border: 1px solid white; */
+}
+
+
+.booking-details{
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.Schedule{
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+
+.movie-title , .movie-date{
+    margin-bottom: 15px;
+}
+
+.movie-title h2 , .movie-date h2{
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.movie-title span,  .movie-date span, .one span , .two span{
+    color: rgb(179, 179, 179);
+}
+
+.movie-ticket{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+
+
+
+
+
+.movie-ticket h2{
+    font-weight: 600;
+    
+}
+
+.transaction{
+    margin-top: 60px;
+}
+
+
+.transaction H4{
+    font-weight: 500;
+}
+
+.three , .four, .five{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* margin-bottom: 6px; */
+    margin-top: 3px;
+    padding: 8px 0;
+}
+
+.three{
+    padding-bottom: 5px;
+    padding-top: 6px;
+    
+}
+
+.three p:first-child{
+    color: rgb(209, 209, 209);
+}
+
+
+.four{
+    border-bottom: 1px solid white;
+}
+
+.five{
+    border-bottom: 1px solid white;
+}
+
+.cancelled{
+    font-size: 0.9rem;
+    color: rgb(198, 198, 198);
+    margin-top: 40px;
+}
+
+.getTicket{
+        width: 100%;
+        background-color: #1DE782;
+        color: white;
+        font-weight: 800;
+        padding: 14px 20px;
+        border-radius: 10px;
+        border: none;
+        margin-top: 13px;
+        font-size: 1.1rem;
+}

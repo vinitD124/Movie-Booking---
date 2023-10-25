@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- <img class="top" src="./img/Frame 35.png" alt=""/> -->
+    <div class="poster-details-container">
+      <div class="left">
+        <img class="img-poster" src="./img/bladerunner.jpg" alt="" />
+      </div>
+
+      <div class="right">
+        <div class="top-right">
+          <h3 class="heading">SPIDERMAN ACROSS THE SPIDER VERSE</h3>
+          <ul>
+            <li class="li">
+              <p><i class="bx bx-time"></i> Duration</p>
+              <span>2h 30m</span>
+            </li>
+            <li class="li">
+              <p><i class="bx bx-movie"></i> Genre</p>
+              <span class="genre-text">Action / Drama</span>
+            </li>
+            <li class="li">
+              <p><i class="bx bx-star"></i>Rating</p>
+              <span class="imdb-rating" >4.5 - Imdb</span>
+            </li>
+          </ul>
+        </div>
+        <div class="bottom-right">
+          <div class="row-one">
+            <h3>Theater</h3>
+            <div class="row">
+              <button class="location-btn btn">
+                <i class="bx bx-map"></i>Smartplex
+              </button>
+              <button class="location-btn btn">
+                <i class="bx bx-map"></i>CityPlex
+              </button>
+              <button class="location-btn btn">
+                <i class="bx bx-map"></i>MultiPlex
+              </button>
+            </div>
+          </div>
+
+          <div class="row-one">
+            <h3>Time</h3>
+            <div class="row">
+              <button class="time-btn btn">08:40</button>
+              <button class="time-btn btn">11:40</button>
+              <button class="time-btn btn">13:40</button>
+              <button class="time-btn btn">15:40</button>
+            </div>
+          </div>
+
+          <div class="row-one">
+            <h3>Date</h3>
+            <div class="row">
+              <button class="date-btn btn">
+                20 Oct<br/>Mon
+              </button>
+              <button class="date-btn btn">
+                22 Oct<br/>Tue
+              </button>
+              <button class="date-btn btn">
+                24 Oct <br/>Wed
+              </button>
+              <button class="date-btn btn">
+                26 Oct <br/>Thur
+              </button>
+              <button class="date-btn btn">
+                28 Oct <br/>Fri
+              </button>
+              <button class="date-btn btn">
+                30 Oct <br/>Sat
+              </button>
+            </div>
+          </div>
+
+          <button class="select-ticket-btn">Select Ticket</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+       let ans
+      const receivedData = JSON.parse(localStorage.getItem("dataToSend"));
+
+      if (receivedData) {
+        const receivedDataDiv = document.getElementById("receivedData");
+        // receivedDataDiv.innerHTML = `<p>${receivedData.movieName} - ${receivedData.posterSrc}  </p>`;
+        let url = receivedData.posterSrc;
+        const start = url.indexOf('"') + 1;
+        const end = url.lastIndexOf('"');
+        const path = url.substring(start, end);
+        let cont = document.querySelector(".poster-details-container");
+        cont.querySelector(".img-poster").src = path;
+        ans = receivedData.movieName.toUpperCase();
+        cont.querySelector(".heading").innerHTML = ans;
+        document.querySelector(".genre-text").innerHTML = receivedData.movieGenre 
+        document.querySelector(".imdb-rating").innerHTML = receivedData.movieRating
+      } else {
+        document.write("<p>No data found.</p>");
+      }
+
+      document.querySelectorAll(".location-btn.btn").forEach((e) => {
+        e.addEventListener("click", (btn) => {
+          
+          document.querySelectorAll(".location-btn.btn").forEach(e=>{
+            console.log(e.classList.remove("active"))
+          })
+
+            btn.target.classList.add("active");
+  
+        });
+      });
+
+
+      document.querySelectorAll(".time-btn.btn").forEach((e) => {
+        e.addEventListener("click", (btn) => {
+          
+          document.querySelectorAll(".time-btn.btn").forEach(e=>{
+            console.log(e.classList.remove("active"))
+          })
+
+            btn.target.classList.add("active");
+  
+        });
+      });
+
+
+      document.querySelectorAll(".date-btn.btn").forEach((e) => {
+        e.addEventListener("click", (btn) => {
+          
+          document.querySelectorAll(".date-btn.btn").forEach(e=>{
+            console.log(e.classList.remove("active"))
+          })
+
+            btn.target.classList.add("active");
+  
+        });
+      });
+
+
+      let movieDataToSend = {
+        theatre: "none",
+        time: "none",
+        date: "none",
+        movieName:"none"
+      };
+
+
+      let  theatreVar ,  timeVar  , dateVar
+
+      document
+        .querySelector(".select-ticket-btn")
+        .addEventListener("click", () => {
+        
+            
+          document.querySelectorAll(".location-btn").forEach(e=>{
+            if(e.classList[2] === "active"){
+                theatreVar = e.innerText
+            }
+          })
+
+          document.querySelectorAll(".time-btn").forEach(e=>{
+            if(e.classList[2] === "active"){
+                timeVar =  e.innerText
+            }
+          })
+
+
+          document.querySelectorAll(".date-btn").forEach(e=>{
+            if(e.classList[2] === "active"){
+              dateVar =  e.innerText.replace("\n", " ")
+            }
+          })
+          
+          movieDataToSend = {
+        theatre: theatreVar,
+        time: timeVar,
+        date: dateVar,
+        movieName : ans
+      };
+
+      console.log(movieDataToSend)
+     
+      localStorage.setItem("movieData", JSON.stringify(movieDataToSend));
+        window.location.href = "TicketBook.html";
+        
+        
+          
+        });
+
+    </script>
+  </body>
+</html>

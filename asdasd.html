@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text to Notepad File Download</title>
+</head>
+<body>
+    <h1>Hello, world</h1>
+    <button id="downloadButton">Download Notepad File</button>
+
+    <script>
+        // Get a reference to the button element
+        var button = document.getElementById('downloadButton');
+
+        // Add a click event listener to the button
+        button.addEventListener('click', function() {
+            // Create a Blob containing the text
+            var text = "Hello, world";
+            var blob = new Blob([text], { type: 'text/plain' });
+
+            // Create a URL for the Blob
+            var url = URL.createObjectURL(blob);
+
+            // Create an anchor element to trigger the download
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'hello_world.txt';
+
+            // Simulate a click on the anchor element to trigger the download
+            a.click();
+
+            // Release the URL object
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>

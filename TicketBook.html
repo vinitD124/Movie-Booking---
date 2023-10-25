@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-ticket-wrapper">
+        <div class="ticket-top">
+            <div class="ticket-child">
+                <h2 class="movie-name"><span>MovieName:</span> <p class="movie-name-cont"></p></h2>
+                <h2 class="theatre-name"><span>Theatre:</span> <p class="movie-theatre-cont"></p></p></h2>
+                <h2 class="time-name"><span>Time:</span> <p class="movie-time-cont"></p></h2>
+                <h2 class="date-name"><span>Date:</span> <p class="movie-date-cont">20 Oct Mon</p></h2>
+                
+            </div>
+        </div>
+        <p class="ticket-price">Ticket Price : 50$ </p>
+
+       
+
+    </div>
+
+    <div class="main-ticket active">
+        <div class="screen">Screen</div>
+        <div class="seat-container">
+            <div class="seats-row">
+                <button>A1</button>
+                <button>A2</button>
+                <button>A3</button>
+                <button>A4</button>
+                <button>A5</button>
+                <button>A6</button>
+                <button>A7</button>
+                <button>A8</button>
+                <button>A9</button>
+                <button>A10</button>
+            </div>
+
+            <div class="seats-row">
+                <button>B1</button>
+                <button>B2</button>
+                <button>B3</button>
+                <button>B4</button>
+                <button>B5</button>
+                <button>B6</button>
+                <button>B7</button>
+                <button>B8</button>
+                <button>B9</button>
+                <button>B10</button>
+            </div>
+
+
+            <div class="seats-row">
+                <button>C1</button>
+                <button>C2</button>
+                <button>C3</button>
+                <button>C4</button>
+                <button>C5</button>
+                <button>C6</button>
+                <button>C7</button>
+                <button>C8</button>
+                <button>C9</button>
+                <button>C10</button>
+            </div>
+
+            <div class="seats-row">
+                <button>C1</button>
+                <button>C2</button>
+                <button>C3</button>
+                <button>C4</button>
+                <button>C5</button>
+                <button>C6</button>
+                <button>C7</button>
+                <button>C8</button>
+                <button>C9</button>
+                <button>C10</button>
+            </div>
+
+
+
+            <div class="seats-row">
+                <button>C1</button>
+                <button>C2</button>
+                <button>C3</button>
+                <button>C4</button>
+                <button>C5</button>
+                <button>C6</button>
+                <button>C7</button>
+                <button>C8</button>
+                <button>C9</button>
+                <button>C10</button>
+            </div>
+
+
+
+            <div class="seats-row">
+                <button>C1</button>
+                <button>C2</button>
+                <button >C3</button>
+                <button>C4</button>
+                <button>C5</button>
+                <button>C6</button>
+                <button>C7</button>
+                <button>C8</button>
+                <button>C9</button>
+                <button>C10</button>
+            </div>
+
+
+
+            <div class="seats-row">
+                <button>C1</button>
+                <button>C2</button>
+                <button>C3</button>
+                <button>C4</button>
+                <button>C5</button>
+                <button>C6</button>
+                <button>C7</button>
+                <button>C8</button>
+                <button>C9</button>
+                <button>C10</button>
+            </div>
+        </div>
+
+
+        
+    </div>
+
+    <div class="bottom-container">
+        <div class="ticket-bottom-container">
+            <div class="ticket-bottom-left">
+                <div class="text">
+                    <span>TOTAL</span>
+                    <h3 class="total-price">150$</h3>
+                </div>
+
+                <div class="text text-2">
+                    <span>SEAT</span>
+                    <h3 class="total-seat">C1,C2,C3</h3>
+                </div>
+            </div>
+            <div class="ticket-bottom-right"> <button class="back-btn">Back</button>  <button class="get-ticket">Get Your Tickets</button></div>
+        </div>
+    </div>
+
+    <script>
+
+
+    const receivedData = JSON.parse(localStorage.getItem("movieData"));
+    console.log(receivedData)
+
+        let seatArray = []
+
+        let seatRow = document.querySelector(".seat-container")
+
+        let numberTicket = 0
+
+        let ticketPrice = 0;
+
+        document.querySelector(".movie-name-cont").innerHTML = receivedData.movieName
+        document.querySelector(".movie-theatre-cont").innerHTML = receivedData.theatre
+        document.querySelector(".movie-time-cont").innerHTML = receivedData.time
+        document.querySelector(".movie-date-cont").innerHTML = receivedData.date
+
+        document.querySelector(".back-btn").addEventListener("click",()=>{
+            window.location.href = 'MovieDetails.html';
+
+        })
+
+        document.querySelector(".get-ticket").addEventListener("click",()=>{
+
+            const billdataSend = {
+                movieName : receivedData.movieName,
+                theatre : receivedData.theatre,
+                time : receivedData.time,
+                data : receivedData.date,
+                seats : seatArray,
+                totalPrice : ticketPrice
+
+            }
+
+            console.log(billdataSend)
+            localStorage.setItem("Billdata", JSON.stringify(billdataSend));
+
+        
+            window.location.href = 'ticketBill.html';
+
+        })
+
+       
+
+        function updatePriceArrayShow(){
+         
+            document.querySelector(".total-price").innerHTML = `${ticketPrice}$`
+            document.querySelector(".total-seat").innerHTML = seatArray
+            
+        }
+
+        seatRow.querySelectorAll("button").forEach(btn=>{
+            btn.addEventListener("click",()=>{
+               if (btn.classList[0] === "active"){
+                console.log("remove")
+                btn.classList.remove("active")
+                const seatIndex = seatArray.indexOf(btn.innerHTML);
+                seatArray.splice(seatIndex , 1)
+                ticketPrice -= 50
+                numberTicket -= 1
+                updatePriceArrayShow()
+               }
+
+               else{
+                if (numberTicket < 6){
+
+                    btn.classList.add("active")
+                seatArray.push(btn.innerHTML)
+                ticketPrice += 50
+                numberTicket += 1
+                updatePriceArrayShow()
+
+                }
+
+                else{
+                        btn.style.pointerEvents = "not-allowed"
+                }
+          
+               }
+               console.log(seatArray)
+          
+
+               document.querySelector(".bottom-container").classList.add("active")
+            })
+
+
+     
+
+
+        })
+
+
+
+
+    </script>
+</body>
+</html>

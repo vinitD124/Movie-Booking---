@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="bill-container">
+        <div class="bill">
+            <h2 class="booking-details">Booking Details</h2>
+            <h3 class="Schedule">Schedule</h3>
+
+            <div class="movie-title">
+                <span>Movie Title</span>
+                <h2 class="bill-ticket-movie-name">SPIDERMAN NO WAY HOME</h2>
+            </div>
+
+
+            <div class="movie-date">
+                <span>Date</span>
+                <h2 class="bill-ticket-movie-date">Mon, 23 Oct 2023</h2>
+            </div>
+
+            <div class="movie-ticket">
+                <div class="one">
+                    <span>Tickets</span>
+                <h2 class="bill-ticket-movie-seat">C8,C9,C10</h2>
+                </div>
+                <div class="two">
+                    <span>Duration</span>
+                    <h2>2:30 Min</h2>
+                </div>
+            </div>
+
+            <div class="transaction">
+                <h4>Transactions Details</h4>
+                <div class="three">
+                    <p>REGULAR SEAT</p>
+                    <P class="bill-ticket-movie-price">150</P>
+                </div>
+
+                <div class="four">
+                    <p>Serice Charge(6%)</p>
+                    <P class="bill-ticket-movie-charge">30</P>
+                </div>
+
+                <div class="five">
+                    <p>Total Payment</p>
+                    <P class="bill-ticket-movie-totalPrice">1500</P>
+                </div>
+
+                <p class="cancelled">*Purchased ticket can not be cancelled</p>
+
+                <button class="getTicket">Get Your Ticket</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+    const receivedData = JSON.parse(localStorage.getItem("Billdata"));
+    console.log(receivedData)
+
+    document.querySelector(".bill-ticket-movie-name").innerHTML = receivedData.movieName
+    document.querySelector(".bill-ticket-movie-date").innerHTML = receivedData.data + " " + "2023"
+    document.querySelector(".bill-ticket-movie-seat").innerHTML = receivedData.seats    
+    document.querySelector(".bill-ticket-movie-price").innerHTML = receivedData.totalPrice     
+    document.querySelector(".bill-ticket-movie-charge").innerHTML = (receivedData.totalPrice  * 6 / 100)   
+    document.querySelector(".bill-ticket-movie-totalPrice").innerHTML = (receivedData.totalPrice) +   (receivedData.totalPrice  * 6 / 100)   
+
+    document.querySelector(".getTicket").addEventListener("click",()=>{
+       
+        let text = `${receivedData.movieName} \n ${receivedData.data + " " + "2023"} \n ${receivedData.seats} \n ${receivedData.totalPrice} \n  ${receivedData.totalPric} \n  ${(receivedData.totalPrice) +   (receivedData.totalPrice  * 6 / 100)}`
+
+            var blob = new Blob([text], { type: 'text/plain' });
+
+ 
+            
+            var url = URL.createObjectURL(blob);
+
+            // Create an anchor element to trigger the download
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'YourTicket.txt';
+
+            // Simulate a click on the anchor element to trigger the download
+            a.click();
+
+            // Release the URL object
+            URL.revokeObjectURL(url);
+    })
+  
+    </script>
+</body>
+</html>
